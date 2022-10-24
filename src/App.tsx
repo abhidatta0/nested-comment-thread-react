@@ -7,7 +7,7 @@ const App = ()  => {
   const [ comments, setComments] = useState<CommentType[]>([
 {id: 1666574016881, content: 'sdd', dateOfEntry: new Date(),children: [
   {id: 1666574016882, content: 'child comment', dateOfEntry: new Date(), parentCommentId: 1666574016881, children:[
-    {id: 1666574016883, content: 'child comment', dateOfEntry: new Date(), parentCommentId: 1666574016882},
+    {id: 1666574016883, content: 'child comment2', dateOfEntry: new Date(), parentCommentId: 1666574016882},
   ]}
 ]}
   ]);
@@ -30,7 +30,7 @@ const App = ()  => {
         />
         <button disabled={newComment.length === 0} className="comment__btn" onClick={addComment}>Add new comment</button>
         {
-          comments.map((comment)=> <CommentBox key={comment.id} comment={comment}/>)
+          comments.map((comment)=> <CommentBox key={comment.id} comment={comment} comments={comments} setComments={setComments}/>)
         }
       </div>
     </div>
