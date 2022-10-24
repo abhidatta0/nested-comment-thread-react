@@ -2,5 +2,6 @@ export type CommentType = {
    id: number;
    content: string;
    dateOfEntry: Date;
-   children?: Comment[];
+   children?: CommentType[];
+   parentCommentId?: number;
 }

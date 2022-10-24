@@ -1,3 +1,8 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
 .app{
     width: 90%;
     margin: 10px auto;
@@ -16,4 +21,36 @@
     color: black;
     border: 0;
     border-radius: 5px;
+}
+
+.comment_box{
+    border: 1px solid green;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-top: 10px;
+}
+
+.comment_box__date{
+    font-size: 14px;
+}
+
+.comment_box__content{
+    font-size: 20px;
+    max-width: 70%;
+}
+
+.comment_box__button_container{
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+.comment_box__buttons{
+  border: 0;
+  background-color: white;
+  cursor: pointer;
+  color:grey;
+}
+
+.comment_box__buttons:hover{
+    border-bottom: 2px solid black;
 }
