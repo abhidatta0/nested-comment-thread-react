@@ -23,6 +23,12 @@
     border-radius: 5px;
 }
 
+.comment__btn__cancel{
+    margin-left: 10px;
+    background-color: red;
+    color: white;
+}
+
 .comment_box{
     border: 1px solid green;
     border-radius: 5px;

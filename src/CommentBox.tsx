@@ -16,6 +16,10 @@ const CommentBox = ({comment, comments, setComments}: CommentBoxType)=>{
     setReplyMode(false);
   }
 
+  const cancelReply= ()=>{
+    setReplyMode(false);
+  }
+
   const deleteComment = (id: number)=>{
     setComments(comments.filter(c => c.id !== id));
   }
@@ -40,7 +44,7 @@ const CommentBox = ({comment, comments, setComments}: CommentBoxType)=>{
         </div>
         {
               replyMode && (
-                <Comment mode='reply' addComment={replyToComment}/>
+                <Comment mode='reply' addComment={replyToComment} onCancel={cancelReply}/>
               )
         }
 
