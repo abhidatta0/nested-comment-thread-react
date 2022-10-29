@@ -16,6 +16,10 @@ const CommentBox = ({comment, comments, setComments}: CommentBoxType)=>{
     setReplyMode(false);
   }
 
+  const deleteComment = (id: number)=>{
+    setComments(comments.filter(c => c.id !== id));
+  }
+
   const renderReplies = (allComments: CommentType[])=>{
     return (
       allComments.filter((c) => c.parentCommentId === comment.id).map((c)=> <CommentBox key={c.id} comment={c} 
@@ -31,7 +35,7 @@ const CommentBox = ({comment, comments, setComments}: CommentBoxType)=>{
         <p className="comment_box__content">{comment.content}</p>
         <div className="comment_box__button_container">
             <button className="comment_box__buttons">Edit</button>
-            <button className="comment_box__buttons">Delete</button>
+            <button className="comment_box__buttons" onClick={()=> deleteComment(comment.id)}>Delete</button>
             <button className="comment_box__buttons" onClick={()=> setReplyMode(true)}>Reply</button>
         </div>
         {
