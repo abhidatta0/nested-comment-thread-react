@@ -4,13 +4,7 @@ import { CommentType } from './types';
 import CommentBox from "./CommentBox";
 
 const App = ()  => {
-  const [ comments, setComments] = useState<CommentType[]>([
-{id: 1666574016881, content: 'sdd', dateOfEntry: new Date(),children: [
-  {id: 1666574016882, content: 'child comment', dateOfEntry: new Date(), parentCommentId: 1666574016881, children:[
-    {id: 1666574016883, content: 'child comment2', dateOfEntry: new Date(), parentCommentId: 1666574016882},
-  ]}
-]}
-  ]);
+  const [ comments, setComments] = useState<CommentType[]>([]);
 
   const [newComment, setNewComment] = useState('');
 
