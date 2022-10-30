@@ -3,16 +3,27 @@ import { useState } from 'react';
 import { CommentType } from './types';
 import CommentBox from "./CommentBox";
 import Comment from "./Comment";
+import { setStorageValue, getStorageValue } from './utils/localStorage';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { LOCALSTORAGE } from "./constants/localStorage";
+import { useEffect } from "react";
 
 const App = ()  => {
-  const [ comments, setComments] = useState<CommentType[]>([]);
+  const [ comments, setComments] = useState<CommentType[]>(()=>{
+    const saved = getStorageValue(LOCALSTORAGE.nested_comments_thread, '[]');
+    return saved;
+  });
 
   console.log(comments);
 
   const addComment = (newComment: CommentType)=>{
-    setComments([newComment,...comments]);
+    const updatedComments = [newComment,...comments];
+    setComments(updatedComments);
   }
+
+  useEffect(()=>{
+    setStorageValue(LOCALSTORAGE.nested_comments_thread, comments);
+  },[comments]);
 
 
   return (

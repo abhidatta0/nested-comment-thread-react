@@ -69,7 +69,7 @@ const CommentBox = ({comment, comments, setComments}: CommentBoxType)=>{
         : (
           <>
         <p className="comment_box__date">
-          {format(comment.dateOfEntry, 'dd MMM y - kk:mm aaa')}         {comment.isEdited && <span className='edit__text'>(edited)</span>}
+          {format(new Date(comment.dateOfEntry), 'dd MMM y - kk:mm aaa')}         {comment.isEdited && <span className='edit__text'>(edited)</span>}
         </p>
         <p className="comment_box__content">{comment.content}</p>
         <div className="comment_box__button_container">
