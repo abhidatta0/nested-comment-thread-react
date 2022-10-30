@@ -10,6 +10,9 @@ type CommentBoxType = {
 
 const CommentBox = ({comment, comments, setComments}: CommentBoxType)=>{
   const [replyMode, setReplyMode] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const [editText, setEditText] = useState('');
+
 
   const replyToComment = (newComment: CommentType)=>{
     setComments([{...newComment, parentCommentId: comment.id},...comments]);
@@ -24,6 +27,24 @@ const CommentBox = ({comment, comments, setComments}: CommentBoxType)=>{
     setComments(comments.filter(c => c.id !== id));
   }
 
+  const handleEdit = ()=>{
+    setEditMode(true);
+    setReplyMode(false);
+    setEditText(comment.content);
+  }
+
+  const handleEditCancel = ()=>{
+    setEditMode(false);
+  }
+
+  const handleEditSave = ()=>{
+    const idx = comments.findIndex(c => c.id === comment.id);
+    const newComments = [...comments];
+    newComments.splice(idx, 1, {...comment, dateOfEntry: new Date(), content: editText, isEdited: true});
+    setComments(newComments);
+    setEditMode(false);
+  }
+
   const renderReplies = (allComments: CommentType[])=>{
     return (
       allComments.filter((c) => c.parentCommentId === comment.id).map((c)=> <CommentBox key={c.id} comment={c} 
@@ -35,13 +56,28 @@ const CommentBox = ({comment, comments, setComments}: CommentBoxType)=>{
 
   return (
     <div className="comment_box">
-        <p className="comment_box__date">{getFormattedDate(comment.dateOfEntry)}</p>
+        { editMode ? (
+        <>
+          <input value={editText} onChange={(e)=> setEditText(e.target.value)} className="input__box" />
+          <div className="comment_box__button_container">
+            <button className="comment_box__buttons" onClick={handleEditCancel}>Cancel</button>
+            <button className="comment_box__buttons" onClick={handleEditSave}>Save</button>
+          </div>
+        </>
+        )
+        : (
+          <>
+        <p className="comment_box__date">
+          {getFormattedDate(comment.dateOfEntry)}         {comment.isEdited && <span className='edit__text'>(edited)</span>}
+        </p>
         <p className="comment_box__content">{comment.content}</p>
         <div className="comment_box__button_container">
-            <button className="comment_box__buttons">Edit</button>
+            <button className="comment_box__buttons" onClick={handleEdit}>Edit</button>
             <button className="comment_box__buttons" onClick={()=> deleteComment(comment.id)}>Delete</button>
             <button className="comment_box__buttons" onClick={()=> setReplyMode(true)}>Reply</button>
         </div>
+        </>
+        )}
         {
               replyMode && (
                 <Comment mode='reply' addComment={replyToComment} onCancel={cancelReply}/>

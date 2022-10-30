@@ -11,7 +11,7 @@ const Comment = ({mode, addComment, onCancel}:Props) => {
   const [newComment, setNewComment] = useState('');
 
   const onClick= ()=>{
-    const comment = {id: Date.now(),content: newComment, dateOfEntry: new Date()};
+    const comment = {id: Date.now(),content: newComment, dateOfEntry: new Date(), isEdited: false};
     addComment(comment);
     setNewComment('');
   }

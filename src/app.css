@@ -60,3 +60,8 @@
 .comment_box__buttons:hover{
     border-bottom: 2px solid black;
 }
+
+.edit__text{
+    color: grey;
+    font-size: 12px;
+}

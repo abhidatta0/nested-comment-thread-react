@@ -3,4 +3,5 @@ export type CommentType = {
    content: string;
    dateOfEntry: Date;
    parentCommentId?: number;
+   isEdited: boolean;
 }
