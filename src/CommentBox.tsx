@@ -1,6 +1,7 @@
 import {useState, Dispatch, SetStateAction} from 'react';
 import Comment from './Comment';
 import { CommentType } from "./types";
+import { format } from 'date-fns';
 
 type CommentBoxType = {
   comment: CommentType;
@@ -68,7 +69,7 @@ const CommentBox = ({comment, comments, setComments}: CommentBoxType)=>{
         : (
           <>
         <p className="comment_box__date">
-          {getFormattedDate(comment.dateOfEntry)}         {comment.isEdited && <span className='edit__text'>(edited)</span>}
+          {format(comment.dateOfEntry, 'dd MMM y - kk:mm aaa')}         {comment.isEdited && <span className='edit__text'>(edited)</span>}
         </p>
         <p className="comment_box__content">{comment.content}</p>
         <div className="comment_box__button_container">
@@ -90,7 +91,3 @@ const CommentBox = ({comment, comments, setComments}: CommentBoxType)=>{
 }
 
 export default CommentBox;
-
-const getFormattedDate = (date: Date): string=>{
-  return `${date.getDate()} / ${date.getMonth()+1} / ${date.getFullYear()}`
-}
