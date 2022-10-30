@@ -26,8 +26,10 @@ const Comment = ({mode, addComment, onCancel}:Props) => {
         <input value={newComment} onChange={(e)=> setNewComment(e.target.value)} className="input__box" 
         placeholder="Enter a comment"
         />
+        <div className='comment__btns'>
         <button disabled={newComment.length === 0} className="comment__btn" onClick={onClick}>Add { mode==='comment' ? 'new comment':'reply' }</button>
         {mode === 'reply' && <button disabled={newComment.length === 0} className="comment__btn comment__btn__cancel" onClick={handleCancel}>Cancel</button>}
+        </div>
     </div>
   )
 }

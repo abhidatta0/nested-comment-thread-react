@@ -11,7 +11,7 @@
 
 .input__box{
     padding: 10px;
-    width: 50%;
+    width: 90%;
     margin-right: 10px;
 }
 
@@ -64,4 +64,8 @@
 .edit__text{
     color: grey;
     font-size: 12px;
+}
+
+.comment__btns{
+    padding: 5px 0;
 }
